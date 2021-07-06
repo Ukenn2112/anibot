@@ -76,7 +76,7 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/lostb053/anibot"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blue?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 
-## 信用
+## 引用
 * AniList Api ([GitHub](https://github.com/AniList/ApiV2-GraphQL-Docs))
 * jikanpy ([GitHub](https://github.com/abhinavk99/jikanpy))
 * [@NotThatMF](https://t.me/notthatmf) for [chiaki fast api](https://chiaki.vercel.app/) and for creating base for this bot to work
@@ -86,8 +86,8 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * [@blank_x](https://t.me/blank_x)是[sukuinote](https://gitlab.com/blank-x/sukuinote)的TG。
 
 
-如需改进，请联系[@LostB053]（https://t.me/lostb053）或[@hanabi_support]（https://t.me/hanabi_support）<br>
-也可以要求支持，但不要期望太多（因为我自己还在学习）<br>。
+如需改进，请联系[@LostB053](https://t.me/lostb053) 或 [@hanabi_support](https://t.me/hanabi_support)<br>
+也可以要求支持，但不要期望太多（因为我自己还在学习）。<br>
 <br>
-<h4>注意：我放弃了SauceNAO的东西，因为我不能以一些好看的方式来表示它<br>。
-如果有人能帮助我解析结果并组织它们，如<a href='https://t.me/reverseSearchBot'>@reverseSearchBot</a></h4>附近的东西，但好的外观也足够了，我将不胜感激。
+<h4>注意：我放弃了SauceNAO的东西，因为我不能以一些好看的方式来表示它。<br>
+如果有人能帮助我解析结果并组织它们，如 <a href='https://t.me/reverseSearchBot'>@reverseSearchBot</a></h4>相似好看的，我将不胜感激。
