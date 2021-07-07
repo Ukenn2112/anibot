@@ -19,69 +19,69 @@ HELP_DICT = dict()
 plugins = dict(root="anibot/plugins")
 anibot = Client("anibot", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH, plugins=plugins)
 
-HELP_DICT['Misc'] = '''
-Group based commands:
+HELP_DICT['杂项'] = '''
+用于群组的指令：
 
-/settings - Toggle stuff like whether to allow 18+ stuff in group or whether to notify about aired animes
+/settings - 切换设置，比如是否允许R18，或者是否通知播出的动画。
 
-/disable - Disable use of a cmd in the group (Disable multiple cmds by adding space between them)
-`/disable anime anilist me user`
+/disable - 禁止群组内使用指令（通过在用户和用户之间添加空格来禁止多个用户使用指令）。
+`/disable anime anilist 用户ID`
 
-/enable - Enable use of a cmd in the group (Enable multiple cmds by adding space between them)
-`/enable anime anilist me user`
+/enable - 允许群组内使用指令（通过在用户和用户之间添加空格来允许多个用户使用指令）。
+`/enable anime anilist 用户ID`
 
-/disabled - List out disabled cmds
+/disabled - 列出被禁用使用指令的用户ID
 '''
 
-HELP_DICT["Additional"] = """Use /reverse cmd to get reverse search via tracemoepy API
-__Note: This works best on uncropped anime pic,
-when used on cropped media, you may get result but it might not be too reliable__
+HELP_DICT["其他"] = """使用 /reverse 指令，通过 tracemoepy API 反向搜索
+__注意：这在未经裁剪的动漫图片上效果最好。
+当用于裁剪过的媒体时，你可能会得到结果，但可能不太可靠。__
 
-Use /schedule cmd to get scheduled animes based on weekdays
+使用 /schedule 指令来获取基于工作日的预定动画片
 
-Use /watch cmd to get watch order of searched anime
+使用 /watch 指令来获得搜索到的动画的观看顺序
 
-Use /fillers cmd to get a list of fillers for an anime
+Use /fillers Command to get a list of fillers for an anime
 """
 
 HELP_DICT["Anilist"] = """
-Below is the list of basic anilist cmds for info on anime, character, manga, etc.
+下面是获取关于动漫、人物、漫画等信息的基本Anilist指令列表。
 
-/anime - Use this cmd to get info on specific anime using keywords (anime name) or Anilist ID
-(Can lookup info on sequels and prequels)
+/anime - 使用此指令，使用关键词（动漫名称）或Anilist ID获得特定动漫的信息。
+(可以查询续集和前传的信息)
 
-/anilist - Use this cmd to choose between multiple animes with similar names related to searched query
-(Doesn't includes buttons for prequel and sequel)
+/anilist - 使用此指令可在与搜索查询相关的多个相似的动画。
+(不可以查询续集和前传的信息)
 
-/character - Use this cmd to get info on character
+/character - 使用此指令来获取角色的信息
 
-/manga - Use this cmd to get info on manga
+/manga - 使用这个指令来获取漫画的信息
 
-/airing - Use this cmd to get info on airing status of anime
+/airing - 使用此指令来获取动画片的播放状态
 
-/top - Use this cmd to lookup top animes of a genre/tag or from all animes
-(To get a list of available tags or genres send /gettags or /getgenres)
+/top - 使用此指令查询某一类型/标签的排行或所有的动画。
+(要获得可用的标签或类型的列表，请发送 /gettags 或 /getgenres )
 
-/user - Use this cmd to get info on an anilist user
+/user - 使用此指令来获取一个匿名用户的信息
 """
 
-HELP_DICT["Oauth"] = """
-This includes advanced anilist features
+HELP_DICT["高级"] = """
+这包括高级的anilist功能
 
-Use /auth or !auth cmd to get details on how to authorize your Anilist account with bot
-Authorising yourself unlocks advanced features of bot like:
-- adding anime/character/manga to favourites
-- viewing your anilist data related to anime/manga in your searches which includes score, status, and favourites
-- unlock /flex, /me, /activity and /favourites commands
-- adding/updating anilist entry like completed or plan to watch/read
-- deleting anilist entry
+使用 /auth 或 !auth 指令 以获得关于如何用机器人授权你的Anilist账户的帮助
+授权自己可以解锁机器人的高级功能，如:
+- 将动漫/角色/漫画加入收藏夹
+- 在你的搜索中查看你与动漫相关的数据，包括分数、状态和收藏。
+- 解锁/flex 、/me 、/activity 和 /favourites 指令
+- 添加/更新已完成或计划观看/阅读等清单条目
+- 删除 anilist 条目
 
-Use /flex or !flex cmd to get your anilist stats
+使用 /flex 或 !flex 指令获取Anilist统计信息
 
-Use /logout or !logout cmd to disconnect your Anilist account
+使用 /logout 或 !logout 指令解除绑定你的Anilist账户的
 
-Use /me or !me cmd to get your anilist recent activity
-Can also use /activity or !activity
+使用 /me 或 !me 指令获得你最近的活动信息
+也可以使用 /activity 或 !activity
 
-Use /favourites or !favourites cmd to get your anilist favourites
+使用 /favourites 或 !favourites 指令获取你的anilist收藏夹
 """

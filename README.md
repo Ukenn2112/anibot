@@ -15,8 +15,8 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * 动漫发布通知[Crunchyroll](https://crunchyroll.com)
 * 动漫发布通知 [Subsplease](https://subsplease.org)
 * 动漫反向搜索由[tracemoepy]提供(https://github.com/dragsama/tracemoepy)
-* 使用[web api](https://chiaki.vercel.app)从[Chiaki](https://chiaki.site/)观看命令。
-<h3>还可以添加到群组并启用sfw锁，以防止成员查找hentai和18岁以上的东西<br>还包括命令禁用。</h3>
+* 使用[web api](https://chiaki.vercel.app)从[Chiaki](https://chiaki.site/)观看指令。
+<h3>还可以添加到群组并启用sfw锁，以防止成员查找hentai和18岁以上的东西<br>还包括指令禁用。</h3>
 
 <img src='https://img.shields.io/github/repo-size/lostb053/anibot?style=flat-square'>  <img src='https://img.shields.io/github/license/lostb053/anibot?style=flat-square'>  <img src='https://img.shields.io/github/languages/top/lostb053/anibot?style=flat-square'>  [![CodeFactor](https://www.codefactor.io/repository/github/lostb053/anibot/badge)](https://www.codefactor.io/repository/github/lostb053/anibot)
 
@@ -54,9 +54,9 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
  /feedback - 联系机器人所有者或主要支持小组@hanabi_support
  /me 或 /activity - 获取 Anilist 最近的活动
  /fillers - 获取动画片填充物的列表
- /disable - 禁用组中的一个命令
- /enable - 启用组内的一个命令
- /disabled - 在一个组中列出禁用的命令
+ /disable - 禁用组中的一个指令
+ /enable - 启用组内的一个指令
+ /disabled - 在一个组中列出禁用的指令
  /favourites - 获得Anilist的最爱
  /gettags - 获取可用的标签列表
  /getgenres - 获取可用类型的列表

@@ -775,11 +775,11 @@ async def additional_info_btn(client: Client, cq: CallbackQuery):
     q = cq.data.split("_")
     kek, query, ctgry = q[0], q[1], q[2]
     info = (
-        "<b>Description</b>"
+        "<b>简介</b>"
         if kek == "desc"
-        else "<b>Series List</b>"
+        else "<b>系列 列表</b>"
         if kek == "ls"
-        else "<b>Characters List</b>"
+        else "<b>角色声优 列表</b>"
     )
     page = 0
     lsqry = f"_{q[3]}" if len(q) > 6 else ""
@@ -810,22 +810,22 @@ async def additional_info_btn(client: Client, cq: CallbackQuery):
         btndata = rjsdata[2]
         if btndata['lastPage']!=1:
             if page == '1':
-                button.append([InlineKeyboardButton(text="Next", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)+1}_{user}')])
+                button.append([InlineKeyboardButton(text="下一页", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)+1}_{user}')])
             elif btndata['lastPage']==int(page):
-                button.append([InlineKeyboardButton(text="Prev", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)-1}_{user}')])
+                button.append([InlineKeyboardButton(text="上一页", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)-1}_{user}')])
             else:
                 button.append([
-                    InlineKeyboardButton(text="Prev", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)-1}_{user}'),
-                    InlineKeyboardButton(text="Next", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)+1}_{user}')
+                    InlineKeyboardButton(text="上一页", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)-1}_{user}'),
+                    InlineKeyboardButton(text="下一页", callback_data=f'{kek}_{query}_{ctgry}{lsqry}{lspg}_{q[5] if len(q) != 6 else q[3]}_{int(page)+1}_{user}')
                 ])
-        add_ = f"\n\nTotal Characters: {btndata['total']}"
+        add_ = f"\n\n角色总数: {btndata['total']}"
     msg = f"{info}:\n\n{result+add_}"
     cbd = (
         f"btn_{query}_{q[3]}_{user}" if len(q) <= 6
         else f"page_ANIME{lsqry}{lspg}_{q[5]}_{user}" if ctgry=="ANI"
         else f"page_CHARACTER{lsqry}{lspg}_{q[5]}_{user}"
     )
-    button.append([InlineKeyboardButton(text="Back", callback_data=cbd)])
+    button.append([InlineKeyboardButton(text="返回", callback_data=cbd)])
     await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(button))
 
 
@@ -847,10 +847,10 @@ async def featured_in_btn(client, cq: CallbackQuery):
     if kek!=0:
         totalpg + 1
     if total>15:
-        button.append([InlineKeyboardButton(text="Next", callback_data=f"lsca_{idm}_1_{qry}_{pg}_{auth}_{user}")])
+        button.append([InlineKeyboardButton(text="下一页", callback_data=f"lsca_{idm}_1_{qry}_{pg}_{auth}_{user}")])
     if req is not None:
-        button.append([InlineKeyboardButton(text="Manga", callback_data=f"lscm_{idm}_0_{qry}_{pg}_{auth}_{user}")])
-    button.append([InlineKeyboardButton(text="Back", callback_data=f"page_CHARACTER_{qry}_{pg}_{auth}_{user}")])
+        button.append([InlineKeyboardButton(text="漫画", callback_data=f"lscm_{idm}_0_{qry}_{pg}_{auth}_{user}")])
+    button.append([InlineKeyboardButton(text="返回", callback_data=f"page_CHARACTER_{qry}_{pg}_{auth}_{user}")])
     await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(button))
 
 
@@ -871,16 +871,16 @@ async def featured_in_switch_btn(client, cq: CallbackQuery):
     button = []
     if total>15:
         if int(reqpg)==0:
-            button.append([InlineKeyboardButton(text="Next", callback_data=f"{req}_{idm}_{int(reqpg)+1}_{qry}_{pg}_{auth}_{user}")])
+            button.append([InlineKeyboardButton(text="下一页", callback_data=f"{req}_{idm}_{int(reqpg)+1}_{qry}_{pg}_{auth}_{user}")])
         elif int(reqpg)==totalpg:
-            button.append([InlineKeyboardButton(text="Back", callback_data=f"{req}_{idm}_{int(reqpg)-1}_{qry}_{pg}_{auth}_{user}")])
+            button.append([InlineKeyboardButton(text="返回", callback_data=f"{req}_{idm}_{int(reqpg)-1}_{qry}_{pg}_{auth}_{user}")])
         else:
             button.append(
                 [
-                    InlineKeyboardButton(text="Back", callback_data=f"{req}_{idm}_{int(reqpg)-1}_{qry}_{pg}_{auth}_{user}"),
-                    InlineKeyboardButton(text="Next", callback_data=f"{req}_{idm}_{int(reqpg)+1}_{qry}_{pg}_{auth}_{user}")
+                    InlineKeyboardButton(text="返回", callback_data=f"{req}_{idm}_{int(reqpg)-1}_{qry}_{pg}_{auth}_{user}"),
+                    InlineKeyboardButton(text="下一页", callback_data=f"{req}_{idm}_{int(reqpg)+1}_{qry}_{pg}_{auth}_{user}")
                 ]
             )
     button.append([InlineKeyboardButton(text=f"{bt}", callback_data=f"{reqb}_{idm}_0_{qry}_{pg}_{auth}_{user}")])
-    button.append([InlineKeyboardButton(text="Back", callback_data=f"page_CHARACTER_{qry}_{pg}_{auth}_{user}")])
+    button.append([InlineKeyboardButton(text="返回", callback_data=f"page_CHARACTER_{qry}_{pg}_{auth}_{user}")])
     await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(button))

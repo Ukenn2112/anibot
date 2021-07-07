@@ -46,14 +46,14 @@ async def watch_(client, cq: CallbackQuery):
         totalpg + 1
     if total>50:
         if int(req)==0:
-            button.append([InlineKeyboardButton(text="Next", callback_data=f"{kek}_{id_}_{qry}_{int(req)+1}_{user}")])
+            button.append([InlineKeyboardButton(text="下一页", callback_data=f"{kek}_{id_}_{qry}_{int(req)+1}_{user}")])
         elif int(req)==totalpg:
-            button.append([InlineKeyboardButton(text="Prev", callback_data=f"{kek}_{id_}_{qry}_{int(req)-1}_{user}")])
+            button.append([InlineKeyboardButton(text="上一页", callback_data=f"{kek}_{id_}_{qry}_{int(req)-1}_{user}")])
         else:
             button.append(
                 [
-                    InlineKeyboardButton(text="Prev", callback_data=f"{kek}_{id_}_{qry}_{int(req)-1}_{user}"),
-                    InlineKeyboardButton(text="Next", callback_data=f"{kek}_{id_}_{qry}_{int(req)+1}_{user}")
+                    InlineKeyboardButton(text="上一页", callback_data=f"{kek}_{id_}_{qry}_{int(req)-1}_{user}"),
+                    InlineKeyboardButton(text="下一页", callback_data=f"{kek}_{id_}_{qry}_{int(req)+1}_{user}")
                 ]
             )
     button.append([InlineKeyboardButton("Back", callback_data=f"wol_{qry}_{user}")])

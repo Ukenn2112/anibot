@@ -324,17 +324,17 @@ async def start_(client: Client, message: Message):
                 return
         await client.send_message(
             gid,
-            text=f"""Kon'nichiwa!!!
-I'm {bot.first_name} bot and I can help you get info on Animes, Mangas, Characters, Airings, Schedules, Watch Orders of Animes, etc
-For more info send /help in here.
-If you wish to use me in a group start me by /start{BOT_NAME} command after adding me in the group."""
+            text=f"""こんにちは!!!
+我是 {bot.first_name} 机器人，我可以帮助你获得关于动画、漫画、角色、播出时间、时间表、动画的观看顺序等信息。
+如需更多信息，请在此发送 /help
+如果你想在群组中使用我，在把我加入群组后，请使用 /start{BOT_NAME} 指令启动我。"""
         )
     else:
         gidtitle = message.chat.username or message.chat.title
         if not await (GROUPS.find_one({"id": gid})):
             await GROUPS.insert_one({"id": gid, "grp": gidtitle})
             await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
-        await client.send_message(gid, text="Bot seems online!!!")
+        await client.send_message(gid, text="机器人在线！！！")
 
 
 @Client.on_message(filters.command(['help', f'help{BOT_NAME}'], prefixes=trg))
@@ -347,22 +347,22 @@ async def help_(client: Client, message: Message):
     id_ = message.from_user.id
     bot_us = (await client.get_me()).username
     buttons = help_btns(id_)
-    text='''This is a small guide on how to use me\n\n**Basic Commands:**\nUse /ping or !ping cmd to check if bot is online
-Use /start or !start cmd to start bot in group or pm
-Use /help or !help cmd to get interactive help on available bot cmds
-Use /feedback cmd to contact bot owner'''
+    text='''这是一个关于如何使用我的指南\n\n**基础指令:**\n使用 /ping 或 !ping 检查机器人是否在线
+使用 /start 或 !start 在群组或私聊启动机器人
+使用 /help 或 !help 获取机器人使用帮助
+使用 /feedback 联系机器人所有者'''
     if id_ in OWNER:
         await client.send_message(gid, text=text, reply_markup=buttons)
         await client.send_message(
             gid,
-            text="""Owners / Sudos can also use
+            text="""所有者/管理员可使用的指令
 
-- __/term__ `to run a cmd in terminal`
-- __/eval__ `to run a python code (code must start right after cmd like `__/eval print('UwU')__`)`
-- __/stats__ `to get stats on bot like no. of users, grps and authorised users`
-- __/dbcleanup__ `to remove obsolete/useless entries in database`
+- __/term__ `在终端运行指令`
+- __/eval__ `运行Python代码 (指令需在本指令空格后面 如 `__/eval print('UwU')__`)`
+- __/stats__ `获取机器人的统计数据，如用户数、群组数和授权用户数。`
+- __/dbcleanup__ `删除数据库中过期/失效的条目`
 
-Apart from above shown cmds"""
+以上指令仅所有者/管理员可使用"""
         )
     else:
         if gid==id_:
@@ -370,7 +370,7 @@ Apart from above shown cmds"""
         else:
             await client.send_message(
                 gid,
-                text="Click below button for bot help",
+                text="点击下面的按钮获取机器人帮助",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help", url=f"https://t.me/{bot_us}/?start=help")]])
             )
 
@@ -391,10 +391,10 @@ async def help_list_parser(client, cq: CallbackQuery):
     await cq.answer()
     user = cq.data.split("_")[1]
     buttons = help_btns(user)
-    text='''This is a small guide on how to use me\n\n**Basic Commands:**\nUse /ping or !ping cmd to check if bot is online
-Use /start or !start cmd to start bot in group or pm
-Use /help or !help cmd to get interactive help on available bot cmds
-Use /feedback cmd to contact bot owner'''
+    text='''这是一个关于如何使用我的指南\n\n**基础指令:**\n使用 /ping 或 !ping 检查机器人是否在线
+使用 /start 或 !start 在群组或私聊启动机器人
+使用 /help 或 !help 获取机器人使用帮助
+使用 /feedback 联系机器人所有者'''
     await cq.edit_message_text(text=text, reply_markup=buttons)
 
 
@@ -416,7 +416,7 @@ def help_btns(user):
 @control_user
 async def stats_(client: Client, message: Message):
     st = datetime.now()
-    x = await message.reply_text("Collecting Stats!!!")
+    x = await message.reply_text("收集统计资料中...")
     et = datetime.now()
     pt = (et-st).microseconds / 1000
     nosus = await USERS.estimated_document_count()
@@ -428,11 +428,11 @@ async def stats_(client: Client, message: Message):
     c = await CR_GRPS.estimated_document_count()
     kk = requests.get("https://api.github.com/repos/lostb053/anibot").json()
     await x.edit_text(f"""
-Stats:-
+统计信息:-
 
-**Users:** {nosus}
-**Authorised Users:** {nosauus}
-**Groups:** {nosgrps}
+**用户:** {nosus}
+**授权用户:** {nosauus}
+**群组:** {nosgrps}
 **Airing Groups:** {a}
 **Crunchyroll Groups:** {c}
 **Subsplease Groups:** {s}
@@ -461,7 +461,7 @@ async def pong_(client: Client, message: Message):
 @control_user
 async def feed_(client: Client, message: Message):
     owner = await client.get_users(OWNER[0])
-    await client.send_message(message.chat.id, f"For issues or queries please contact @{owner.username} or join @hanabi_support")
+    await client.send_message(message.chat.id, f"For issues or queries please contact @{owner.username} or join @UCoinLoginBot")
 
 ###### credits to @NotThatMF on tg since he gave me the code for it ######
 
@@ -469,7 +469,7 @@ async def feed_(client: Client, message: Message):
 @Client.on_message(filters.command(['eval', f'eval{BOT_NAME}'], prefixes=trg) & filters.user(OWNER))
 @control_user
 async def eval_(client: Client, message: Message):
-    status_message = await message.reply_text("Processing ...")
+    status_message = await message.reply_text("处理中 ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
     reply_to_ = message
     if message.reply_to_message:

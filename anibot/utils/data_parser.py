@@ -14,13 +14,13 @@ ANIME_DB, MANGA_DB, CHAR_DB = {}, {}, {}
 ANIME_TEMPLATE = """{name}
 
 **ID | MAL ID:** `{idm}` | `{idmal}`
-➤ **SOURCE:** `{source}`
-➤ **TYPE:** `{formats}`{dura}{gnrs_}
+➤ **动画类型:** `{source}`
+➤ **播放类型:** `{formats}`{dura}{gnrs_}
 {status_air}{user_data}
-➤ **ADULT RATED:** `{adult}`
+➤ **限制级:** `{adult}`
 🎬 {trailer_link}
-📖 <a href="{surl}">Synopsis</a>
-📖 <a href="{url}">Official Site</a>
+📖 <a href="{surl}">简介</a>
+📖 <a href="{url}">官方网站</a>
 
 {additional}"""
 
@@ -589,7 +589,7 @@ async def get_all_tags(text: str = None):
 async def get_all_genres():
     vars_ = {}
     result = await return_json_senpai(GET_GENRES, vars_, auth=False)
-    msg = "**Genres List:**\n\n"
+    msg = "**类型标签 列表:**\n\n"
     for i in result['data']['GenreCollection']:
         msg += f"`{i}`\n"
     return msg
@@ -773,7 +773,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
     bot = BOT_NAME.replace("@", "")
     gnrs_ = ""
     if len(gnrs)!=0:
-        gnrs_ = f"\n➤ **GENRES:** `{gnrs}`"
+        gnrs_ = f"\n➤ **类型标签:** `{gnrs}`"
     isfav = data.get("isFavourite")
     fav = ", in Favourites" if isfav is True else ""
     user_data = ""
@@ -818,7 +818,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
     additional = f"{prql}{sql}"
     surl = f"https://t.me/{bot}/?start=des_ANI_{idm}"
     dura = (
-        f"\n➤ **DURATION:** `{duration} min/ep`"
+        f"\n➤ **播放时长:** `{duration} min/ep`"
         if duration is not None
         else ""
     )
@@ -838,11 +838,11 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
         air_on += f" | {eps}{th} eps"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
-        status_air = f"➤ **STATUS:** `{status}{eps_}`"
+        status_air = f"➤ **播放状态:** `{status}{eps_}`"
     else:
-        status_air = f"➤ **STATUS:** `{status}`\n➤ **NEXT AIRING:** `{air_on}`"
+        status_air = f"➤ **播放状态:** `{status}`\n➤ **下次播出:** `{air_on}`"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
-        trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
+        trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>预告片</a>"
     title_img = f"https://img.anili.st/media/{idm}"
     try:
         finals_ = ANIME_TEMPLATE.format(**locals())
@@ -881,7 +881,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None):
     gnrs = ", ".join(data['genres'])
     gnrs_ = ""
     if len(gnrs)!=0:
-        gnrs_ = f"\n➤ **GENRES:** `{gnrs}`"
+        gnrs_ = f"\n➤ **类型标签:** `{gnrs}`"
     fav = ", in Favourites" if isfav is True else ""
     in_ls = False
     in_ls_id = ""
@@ -920,7 +920,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None):
     additional = f"{prql}{sql}"
     additional.replace("-", "")
     dura = (
-        f"\n➤ **DURATION:** `{duration} min/ep`"
+        f"\n➤ **播放时长:** `{duration} min/ep`"
         if duration is not None
         else ""
     )
@@ -940,11 +940,11 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None):
         air_on += f" | {eps}{th} eps"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
-        status_air = f"➤ **STATUS:** `{status}{eps_}`"
+        status_air = f"➤ **播放状态:** `{status}{eps_}`"
     else:
-        status_air = f"➤ **STATUS:** `{status}`\n➤ **NEXT AIRING:** `{air_on}`"
+        status_air = f"➤ **播放状态:** `{status}`\n➤ **下次播出:** `{air_on}`"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
-        trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
+        trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>预告片</a>"
     url = data.get("siteUrl")
     title_img = f"https://img.anili.st/media/{idm}"
     surl = f"https://t.me/{bot}/?start=des_ANI_{idm}"
@@ -1045,12 +1045,12 @@ async def get_manga(qdb, page, auth: bool = False, user: int = None):
         {native}"""
     finals_ = f"{name}\n\n"
     finals_ += f"➤ **ID:** `{idm}`\n"
-    finals_ += f"➤ **STATUS:** `{status}`\n"
+    finals_ += f"➤ **播放状态:** `{status}`\n"
     finals_ += f"➤ **VOLUMES:** `{volumes}`\n"
     finals_ += f"➤ **CHAPTERS:** `{chapters}`\n"
     finals_ += f"➤ **SCORE:** `{score}`\n"
     finals_ += f"➤ **FORMAT:** `{format_}`\n"
-    finals_ += f"➤ **SOURCE:** `{source}`\n"
+    finals_ += f"➤ **动画类型:** `{source}`\n"
     finals_ += user_data
     finals_ += f"\nDescription: `{description}`\n\n"
     pic = f"https://img.anili.st/media/{idm}"
@@ -1091,7 +1091,7 @@ async def get_airing(vars_, auth: bool = False, user: int = None):
     title_ = english or romaji
     out = f"[{c_flag}] **{title_}**"
     out += f"\n\n**ID:** `{mid}`"
-    out += f"\n**Status:** `{status}`\n"
+    out += f"\n**播放状态:** `{status}`\n"
     out += user_data
     if air_on:
         out += f"Airing Episode `{episode}th` in `{air_on}`"

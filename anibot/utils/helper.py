@@ -249,9 +249,9 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
     pg = f"_{lspage}" if lspage  is not None else ""
     if media == "ANIME" and sfw == "False":
         buttons.append([
-            InlineKeyboardButton(text="Characters", callback_data=f"char_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_1_{user}"),
-            InlineKeyboardButton(text="Description", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
-            InlineKeyboardButton(text="List Series", callback_data=f"ls_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
+            InlineKeyboardButton(text="角色", callback_data=f"char_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_1_{user}"),
+            InlineKeyboardButton(text="简介", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
+            InlineKeyboardButton(text="系列", callback_data=f"ls_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
         ])
     if media == "CHARACTER":
         buttons.append([InlineKeyboardButton("Description", callback_data=f"desc_{result[2][0]}_CHAR{qry}{pg}_{str(auth)}_{user}")])
@@ -287,13 +287,13 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
                 buttons.append([InlineKeyboardButton(text="Prequel", callback_data=f"btn_{result[3]}_{str(auth)}_{user}")])
     if lsqry  is not None and len(result)!=1 and result[1][1]!=1:
         if lspage == 1:
-            buttons.append([InlineKeyboardButton(text="Next", callback_data=f"page_{media}{qry}_{int(lspage)+1}_{str(auth)}_{user}")])
+            buttons.append([InlineKeyboardButton(text="下一页", callback_data=f"page_{media}{qry}_{int(lspage)+1}_{str(auth)}_{user}")])
         elif lspage == result[1][1]:
-            buttons.append([InlineKeyboardButton(text="Prev", callback_data=f"page_{media}{qry}_{int(lspage)-1}_{str(auth)}_{user}")])
+            buttons.append([InlineKeyboardButton(text="上一页", callback_data=f"page_{media}{qry}_{int(lspage)-1}_{str(auth)}_{user}")])
         else:
             buttons.append([
-                InlineKeyboardButton(text="Prev", callback_data=f"page_{media}{qry}_{int(lspage)-1}_{str(auth)}_{user}"),
-                InlineKeyboardButton(text="Next", callback_data=f"page_{media}{qry}_{int(lspage)+1}_{str(auth)}_{user}"),
+                InlineKeyboardButton(text="上一页", callback_data=f"page_{media}{qry}_{int(lspage)-1}_{str(auth)}_{user}"),
+                InlineKeyboardButton(text="下一页", callback_data=f"page_{media}{qry}_{int(lspage)+1}_{str(auth)}_{user}"),
             ])
     return InlineKeyboardMarkup(buttons)
 
