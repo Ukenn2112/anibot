@@ -26,15 +26,15 @@ TRACE_MOE = {}
 @Client.on_message(filters.command(["reverse", f"reverse{BOT_NAME}"], prefixes=trg))
 @control_user
 async def trace_bek(client: Client, message: Message):
-    """ 反向搜索动画片段/图片 """
+    """ 反向搜索动画段/图片 """
     gid = message.chat.id
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'reverse' in find_gc['cmd_list'].split():
         return
-    x = await message.reply_text("反向搜索指定的媒体")
+    x = await message.reply_text("正在反向搜索指定的媒体...")
     replied = message.reply_to_message
     if not replied:
-        await x.edit_text("Reply to some media !")
+        await x.edit_text("正在返回结果 !")
         await asyncio.sleep(5)
         await x.delete()
         return
@@ -45,36 +45,36 @@ async def trace_bek(client: Client, message: Message):
             try:
                 search = await tracemoe.search(dls_loc, upload_file=True)
             except ServerError:
-                await x.edit_text('ServerError, retrying')
+                await x.edit_text('服务器错误，正在重试')
                 try:
                     search = await tracemoe.search(dls_loc, upload_file=True)
                 except ServerError:
-                    await x.edit_text('Couldnt parse results!!!')
+                    await x.edit_text('无法解析结果!!!')
                     return
             result = search["result"][0]
             caption_ = (
-                f"**Title**: {result['anilist']['title']['english']} (`{result['anilist']['title']['native']}`)\n"
+                f"**标题**: {result['anilist']['title']['native']} (`{result['anilist']['title']['english']}`)\n"
                 f"\n**Anilist ID:** `{result['anilist']['id']}`"
-                f"\n**Similarity**: `{(str(result['similarity']*100))[:5]}`"
-                f"\n**Episode**: `{result['episode']}`"
+                f"\n**相似度**: `{(str(result['similarity']*100))[:5]}`"
+                f"\n**集数**: `{result['episode']}`"
             )
             preview = result['video']
         button = []
         nsfw = False
         if await check_if_adult(int(result['anilist']['id']))=="True" and await (SFW_GRPS.find_one({"id": gid})):
             msg = no_pic[random.randint(0, 4)]
-            caption="The results parsed seems to be 18+ and not allowed in this group"
+            caption="所解析的结果似乎是R18，不允许在这个群组中出现。如果需要请私信我"
             nsfw = True
         else:
             msg = preview
             caption=caption_
-            button.append([InlineKeyboardButton("More Info", url=f"https://anilist.co/anime/{result['anilist']['id']}")])
+            button.append([InlineKeyboardButton("更多信息", url=f"https://anilist.co/anime/{result['anilist']['id']}")])
         dls_js = rand_key()
         TRACE_MOE[dls_js] = dls_loc
-        button.append([InlineKeyboardButton("Next", callback_data=f"tracech_1_{dls_js}_{message.from_user.id}")])
+        button.append([InlineKeyboardButton("下一个结果", callback_data=f"tracech_1_{dls_js}_{message.from_user.id}")])
         await (message.reply_video if nsfw is False else message.reply_photo)(msg, caption=caption, reply_markup=InlineKeyboardMarkup(button))
     else:
-        await message.reply_text("Couldn't parse results!!!")
+        await message.reply_text("无法解析结果!!!")
     await x.delete()
 
 
@@ -85,34 +85,34 @@ async def tracemoe_btn(client: Client, cq: CallbackQuery):
     try:
         TRACE_MOE[dls_loc]
     except KeyError:
-        return await cq.answer("Query Expired!!!\nCreate new one", show_alert=True)
+        return await cq.answer("查询已过期!!!\n请重新查询", show_alert=True)
     async with ClientSession() as session:
         tracemoe = tracemoepy.AsyncTrace(session=session)
         try:
             search = await tracemoe.search(TRACE_MOE[dls_loc], upload_file=True)
         except ServerError:
-            return await cq.answer("ServerError!!!\nTry again after some time", show_alert=True)
+            return await cq.answer("服务器错误!!!\n请过一段时间后再试", show_alert=True)
         result = search["result"][int(page)]
         caption = (
-            f"**Title**: {result['anilist']['title']['english']} (`{result['anilist']['title']['native']}`)\n"
+            f"**更多信息**: {result['anilist']['title']['native']} (`{result['anilist']['title']['english']}`)\n"
             f"\n**Anilist ID:** `{result['anilist']['id']}`"
-            f"\n**Similarity**: `{(str(result['similarity']*100))[:5]}`"
-            f"\n**Episode**: `{result['episode']}`"
+            f"\n**相似度**: `{(str(result['similarity']*100))[:5]}`"
+            f"\n**集数**: `{result['episode']}`"
         )
         preview = result['video']
     button = []
     if await check_if_adult(int(result['anilist']['id']))=="True" and await (SFW_GRPS.find_one({"id": cq.message.chat.id})):
-        msg = InputMediaPhoto(no_pic[random.randint(0, 4)], caption="The results parsed seems to be 18+ and not allowed in this group")
+        msg = InputMediaPhoto(no_pic[random.randint(0, 4)], caption="所解析的结果似乎是R18，不允许在这个群组中出现。如果需要请私信我")
     else:
         msg = InputMediaVideo(preview, caption=caption)
-        button.append([InlineKeyboardButton("More Info", url=f"https://anilist.co/anime/{result['anilist']['id']}")])
+        button.append([InlineKeyboardButton("更多信息", url=f"https://anilist.co/anime/{result['anilist']['id']}")])
     if int(page)==0:
-        button.append([InlineKeyboardButton("Next", callback_data=f"tracech_{int(page)+1}_{dls_loc}_{user}")])
+        button.append([InlineKeyboardButton("下个结果", callback_data=f"tracech_{int(page)+1}_{dls_loc}_{user}")])
     elif int(page)==(len(search['result'])-1):
-        button.append([InlineKeyboardButton("Back", callback_data=f"tracech_{int(page)-1}_{dls_loc}_{user}")])
+        button.append([InlineKeyboardButton("返回上个结果", callback_data=f"tracech_{int(page)-1}_{dls_loc}_{user}")])
     else:
         button.append([
-            InlineKeyboardButton("Back", callback_data=f"tracech_{int(page)-1}_{dls_loc}_{user}"),
-            InlineKeyboardButton("Next", callback_data=f"tracech_{int(page)+1}_{dls_loc}_{user}")
+            InlineKeyboardButton("返回上个结果", callback_data=f"tracech_{int(page)-1}_{dls_loc}_{user}"),
+            InlineKeyboardButton("下个结果", callback_data=f"tracech_{int(page)+1}_{dls_loc}_{user}")
         ])
     await cq.edit_message_media(msg, reply_markup=InlineKeyboardMarkup(button))

@@ -39,11 +39,11 @@ def control_user(func):
                     USER_WC[user] += 1
                     if USER_WC[user] == 3:
                         await msg.reply_text(
-                            "Stop spamming bot!!!\nElse you will be blacklisted",
+                            "请停止调戏机器人!!!\n否则，你将被列入黑名单",
                         )
                     if USER_WC[user] == 5:
                         await IGNORE.insert_one({'_id': user})
-                        await msg.reply_text('You have been exempted from using this bot now due to spamming 5 times consecutively!!!\nTo remove restriction plead to @hanabi_support')
+                        await msg.reply_text('你已经被禁止使用这个机器人了，因为你连续发了5次无效消息！！。\n要取消限制，请向@hanabi_support提出请求')
                         await clog('ANIBOT', f'UserID: {user}', 'BAN')
                         return
                     await asyncio.sleep(USER_WC[user])
@@ -73,7 +73,7 @@ def check_user(func):
                     ot = USER_JSON[user]
                     if nt-ot<1.4:
                         await c_q.answer(
-                            "Stop spamming bot!!!\nElse you will be blacklisted",
+                            "请停止调戏机器人!!!\n否则，你将被列入黑名单",
                         )
                         await clog('ANIBOT', f'UserID: {user}', 'SPAM')
                 except KeyError:
@@ -100,7 +100,7 @@ async def media_to_image(client: Client, message: Message, x: Message, replied: 
         or replied.animation
         or replied.video
     ):
-        await x.edit_text("Media Type Is Invalid !")
+        await x.edit_text("不支持该媒体类型")
         await asyncio.sleep(5)
         await x.delete()
         return
@@ -118,7 +118,7 @@ async def media_to_image(client: Client, message: Message, x: Message, replied: 
         stdout, stderr = (await runcmd(cmd))[:2]
         os.remove(dls_loc)
         if not os.path.lexists(png_file):
-            await x.edit_text("This sticker is Gey, Task Failed Successfully ≧ω≦")
+            await x.edit_text("这是个Gey的贴纸, 任务成功地失败了 ≧ω≦")
             await asyncio.sleep(5)
             await x.delete()
             raise Exception(stdout + stderr)
@@ -127,13 +127,13 @@ async def media_to_image(client: Client, message: Message, x: Message, replied: 
         stkr_file = os.path.join(DOWN_PATH, f"{rand_key()}.png")
         os.rename(dls_loc, stkr_file)
         if not os.path.lexists(stkr_file):
-            await x.edit_text("```Sticker not found...```")
+            await x.edit_text("```未找到贴纸...```")
             await asyncio.sleep(5)
             await x.delete()
             return
         dls_loc = stkr_file
     elif replied.animation or replied.video:
-        await x.edit_text("`Converting Media To Image ...`")
+        await x.edit_text("`正在将媒体转换为影像...`")
         jpg_file = os.path.join(DOWN_PATH, f"{rand_key()}.jpg")
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
@@ -147,7 +147,7 @@ async def media_to_image(client: Client, message: Message, x: Message, replied: 
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
-    """ run command in terminal """
+    """ 在终端运行命令 """
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(
         *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -164,7 +164,7 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 async def take_screen_shot(
     video_file: str, duration: int, path: str = ""
 ) -> Optional[str]:
-    """ take a screenshot """
+    """ 截屏 """
     print(
         "[[[Extracting a frame from %s ||| Video duration => %s]]]",
         video_file,
@@ -229,11 +229,11 @@ def make_it_rw(time_stamp):
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + " Days, ") if days else "")
-        + ((str(hours) + " Hours, ") if hours else "")
-        + ((str(minutes) + " Minutes, ") if minutes else "")
-        + ((str(seconds) + " Seconds, ") if seconds else "")
-        + ((str(milliseconds) + " ms, ") if milliseconds else "")
+        ((str(days) + " 天,") if days else "")
+        + ((str(hours) + " 时,") if hours else "")
+        + ((str(minutes) + " 分,") if minutes else "")
+        + ((str(seconds) + " 秒,") if seconds else "")
+        + ((str(milliseconds) + " 毫, ") if milliseconds else "")
     )
     return tmp[:-2]
 
@@ -303,9 +303,9 @@ def get_auth_btns(media, user, data, lsqry: str = None, lspage: int = None):
     qry = f"_{lsqry}" if lsqry  is not None else ""
     pg = f"_{lspage}" if lspage  is not None else ""
     if media=="CHARACTER":
-        btn.append(InlineKeyboardButton(text="Add to Favs" if data[1] is not True else "Remove from Favs", callback_data=f"fav_{media}_{data[0]}{qry}{pg}_{user}"))
+        btn.append(InlineKeyboardButton(text="添加到收藏夹" if data[1] is not True else "从收藏夹中删除", callback_data=f"喜爱_{media}_{data[0]}{qry}{pg}_{user}"))
     else:
-        btn.append(InlineKeyboardButton(text="Add to Favs" if data[3] is not True else "Remove from Favs", callback_data=f"fav_{media}_{data[0]}{qry}{pg}_{user}"))
+        btn.append(InlineKeyboardButton(text="添加到收藏夹" if data[3] is not True else "从收藏夹中删除", callback_data=f"喜爱_{media}_{data[0]}{qry}{pg}_{user}"))
         btn.append(InlineKeyboardButton(
             text="Add to List" if data[1] is False else "Update in List",
             callback_data=f"lsadd_{media}_{data[0]}{qry}{pg}_{user}" if data[1] is False else f"lsupdt_{media}_{data[0]}_{data[2]}{qry}{pg}_{user}"
@@ -314,13 +314,13 @@ def get_auth_btns(media, user, data, lsqry: str = None, lspage: int = None):
 
 
 def day_(x: int):
-    if x == 0: return "Monday"
-    if x == 1: return "Tuesday"
-    if x == 2: return "Wednesday"
-    if x == 3: return "Thursday"
-    if x == 4: return "Friday"
-    if x == 5: return "Saturday"
-    if x == 6: return "Sunday"
+    if x == 0: return "星期一"
+    if x == 1: return "星期二"
+    if x == 2: return "星期三"
+    if x == 3: return "星期四"
+    if x == 4: return "星期五"
+    if x == 5: return "星期六"
+    if x == 6: return "星期日"
 
 
 def season_(future: bool = False):
@@ -332,10 +332,10 @@ def season_(future: bool = False):
     if m > 12:
         y = y+1
     if m in [1, 2, 3] or m > 12:
-        return 'WINTER', y
+        return '冬季', y
     if m in [4, 5, 6]:
-        return 'SPRING', y
+        return '春季', y
     if m in [7, 8, 9]:
-        return 'SUMMER', y
+        return '夏季', y
     if m in [10, 11, 12]:
-        return 'FALL', y
+        return '秋季', y

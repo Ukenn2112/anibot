@@ -381,7 +381,7 @@ async def help_dicc_parser(client, cq: CallbackQuery):
     await cq.answer()
     kek, qry, user = cq.data.split("_")
     text = HELP_DICT[qry]
-    btn = InlineKeyboardMarkup([[InlineKeyboardButton("Back", callback_data=f"hlplist_{user}")]])
+    btn = InlineKeyboardMarkup([[InlineKeyboardButton("返回", callback_data=f"hlplist_{user}")]])
     await cq.edit_message_text(text=text, reply_markup=btn)
 
 

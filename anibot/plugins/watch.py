@@ -14,21 +14,21 @@ DC = get_collection('DISABLED_CMDS')
 @Client.on_message(filters.command(["watch", f"watch{BOT_NAME}"], prefixes=trg))
 @control_user
 async def get_watch_order(client: Client, message: Message):
-    """Get List of Scheduled Anime"""
+    """获取预定的动画列表"""
     gid = message.chat.id
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'watch' in find_gc['cmd_list'].split():
         return
     x = message.text.split(" ", 1)
     if len(x)==1:
-        await message.reply_text("Nothing given to search for!!!")
+        await message.reply_text("没有给出搜索的内容!!!")
         return
     user = message.from_user.id
     data = get_wols(x[1])
-    msg = f"Found related animes for the query {x[1]}"
+    msg = f"找到相关查询的动画 {x[1]}"
     buttons = []
     if data == []:
-        await client.send_message(gid, 'No results found!!!')
+        await client.send_message(gid, '未发现结果!!!')
         return
     for i in data:
         buttons.append([InlineKeyboardButton(str(i[1]), callback_data=f"watch_{i[0]}_{x[1]}_0_{user}")])
@@ -56,7 +56,7 @@ async def watch_(client, cq: CallbackQuery):
                     InlineKeyboardButton(text="下一页", callback_data=f"{kek}_{id_}_{qry}_{int(req)+1}_{user}")
                 ]
             )
-    button.append([InlineKeyboardButton("Back", callback_data=f"wol_{qry}_{user}")])
+    button.append([InlineKeyboardButton("返回", callback_data=f"wol_{qry}_{user}")])
     await cq.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(button))
 
 
@@ -65,7 +65,7 @@ async def watch_(client, cq: CallbackQuery):
 async def wls(client, cq: CallbackQuery):
     kek, qry, user = cq.data.split("_")
     data = get_wols(qry)
-    msg = f"Found related animes for the query {qry}"
+    msg = f"找到相关查询的动画 {qry}"
     buttons = []
     for i in data:
         buttons.append([InlineKeyboardButton(str(i[1]), callback_data=f"watch_{i[0]}_{qry}_0_{user}")])

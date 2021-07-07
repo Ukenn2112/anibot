@@ -1,4 +1,4 @@
-Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)和[Nepgear](https://t.me/nepgearbot)获取以下信息。
+Telegram Bot Repo 能够通过 Anilist API 从 [AniFluid](https://t.me/anifluidbot) 和 [Nepgear](https://t.me/nepgearbot) 获取以下信息。
 * 动漫
 * 正在播放
 * 漫画
@@ -8,10 +8,10 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * 最喜欢的作品
 * 漫画家活动
 * 使用机器人更新Anilist条目
-* 流行的、趋势的和即将到来的某一季的动画片
+* 流行的、趋势的和即将到来的某一季的动画
 * 随机动画评分
 * 动漫填充物来自[animefillerslist](https://www.animefillerlist.com)
-* 来自[LiveChart]的动漫播放通知(https://livechart.me)
+* 使用[LiveChart](https://livechart.me)的动漫播放通知
 * 动漫发布通知[Crunchyroll](https://crunchyroll.com)
 * 动漫发布通知 [Subsplease](https://subsplease.org)
 * 动漫反向搜索由[tracemoepy](https://github.com/dragsama/tracemoepy)提供
@@ -39,21 +39,21 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
  /anilist - 获取与查询有关的多部可能的动画的信息
  /character - 获取与查询有关的多个可能的人物信息
  /manga - 获取与查询相关的多种可能的漫画信息
- /airing - 获取动画片的播出数据信息
+ /airing - 获取动画的播出数据信息
  /flex - 获取授权用户的匿名信息
  /user - 获取与查询有关的名单信息
- /schedule - 取出预定的动画片
+ /schedule - 取出预定的动画
  /auth - 获取关于如何授权动漫账户的信息
- /browse - 获取流行的、趋势的或即将播出的动画片
+ /browse - 获取流行的、趋势的或即将播出的动画
  /quote - 获取随机报价
  /logout - 移除授权
  /settings - 在群组中切换nsfw锁定和播放通知
- /top - 检索某一类型或标签的顶级动画片
+ /top - 检索某一类型或标签的顶级动画
  /reverse - 由tracemoepy驱动的反向搜索
  /watch - 检索动画系列的观看顺序
  /feedback - 联系机器人所有者或主要支持小组@hanabi_support
  /me 或 /activity - 获取 Anilist 最近的活动
- /fillers - 获取动画片填充物的列表
+ /fillers - 获取动画填充物的列表
  /disable - 禁用组中的一个指令
  /enable - 启用组内的一个指令
  /disabled - 在一个组中列出禁用的指令
@@ -72,7 +72,7 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 ```
 
 
-## How to host
+## 一键部署
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Ukenn2112/anibot"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blue?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 
@@ -80,14 +80,14 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * AniList Api ([GitHub](https://github.com/AniList/ApiV2-GraphQL-Docs))
 * jikanpy ([GitHub](https://github.com/abhinavk99/jikanpy))
 * [@NotThatMF](https://t.me/notthatmf) for [chiaki fast api](https://chiaki.vercel.app/) and for creating base for this bot to work
-* [@DragSama](https://t.me/dragsama)在telegram上提供[tracemoepy](https://github.com/dragsama/tracemoepy)和[AniFluid-Base](https://github.com/DragSama/AniFluid-Base)
-* [@DeletedUser420](https://t.me/deleteduser420) on telegram for [USERGE-X](https://github.com/code-rgb/USERGE-X) & [Userge- Plugins](https://github.com/code-rgb/Userge-Plugins)
-* [Phyco-Ninja](https://github.com/Phyco-Ninja)是Userge-Plugins repo中anilist插件的作者。
-* [@blank_x](https://t.me/blank_x)是[sukuinote](https://gitlab.com/blank-x/sukuinote)的TG。
+* [@DragSama](https://t.me/dragsama) on telegram for [tracemoepy](https://github.com/dragsama/tracemoepy) & [AniFluid-Base](https://github.com/DragSama/AniFluid-Base)
+* [@DeletedUser420](https://t.me/deleteduser420) on telegram for [USERGE-X](https://github.com/code-rgb/USERGE-X) & [Userge-Plugins](https://github.com/code-rgb/Userge-Plugins)
+* [Phyco-Ninja](https://github.com/Phyco-Ninja) as author of anilist plugin in Userge-Plugins repo
+* [@blank_x](https://t.me/blank_x) on tg for [sukuinote](https://gitlab.com/blank-x/sukuinote)
 
 
 如需改进，请联系[@LostB053](https://t.me/lostb053) 或 [@hanabi_support](https://t.me/hanabi_support)<br>
-也可以要求支持，但不要期望太多（因为我自己还在学习）。<br>
+也可以提要求支持，但不要期望太多（因为我自己还在学习）。<br>
 <br>
-<h4>注意：我放弃了SauceNAO的东西，因为我不能以一些好看的方式来表示它。<br>
+<h4>注意：我放弃了SauceNAO，因为我不能以一种好看的方式来表示它。<br>
 如果有人能帮助我解析结果并组织它们，如 <a href='https://t.me/reverseSearchBot'>@reverseSearchBot</a></h4>相似好看的，我将不胜感激。

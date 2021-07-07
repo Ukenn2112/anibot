@@ -33,11 +33,11 @@ HELP_DICT['杂项'] = '''
 /disabled - 列出被禁用使用指令的用户ID
 '''
 
-HELP_DICT["其他"] = """使用 /reverse 指令，通过 tracemoepy API 反向搜索
+HELP_DICT["其他"] = """使用 /reverse 指令，通过 tracemoepy API 反向搜索来源
 __注意：这在未经裁剪的动漫图片上效果最好。
 当用于裁剪过的媒体时，你可能会得到结果，但可能不太可靠。__
 
-使用 /schedule 指令来获取基于工作日的预定动画片
+使用 /schedule 指令来获取根据星期显示时间表
 
 使用 /watch 指令来获得搜索到的动画的观看顺序
 
@@ -57,7 +57,7 @@ HELP_DICT["Anilist"] = """
 
 /manga - 使用这个指令来获取漫画的信息
 
-/airing - 使用此指令来获取动画片的播放状态
+/airing - 使用此指令来获取动画的播放状态
 
 /top - 使用此指令查询某一类型/标签的排行或所有的动画。
 (要获得可用的标签或类型的列表，请发送 /gettags 或 /getgenres )

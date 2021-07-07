@@ -20,7 +20,7 @@ ANIME_TEMPLATE = """{name}
 ➤ **限制级:** `{adult}`
 🎬 {trailer_link}
 📖 <a href="{surl}">简介</a>
-📖 <a href="{url}">官方网站</a>
+📖 <a href="{url}">Anilist</a>
 
 {additional}"""
 
@@ -788,12 +788,12 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
             in_ls_score = f" and scored {in_list['score']}" if in_list['score']!=0 else ""
             user_data = f"\n➤ **USER DATA:** `{in_ls_stts}{fav}{in_ls_score}`"
     if data["title"]["english"] is not None:
-        name = f"""[{c_flag}]**{romaji}**
+        name = f"""[{c_flag}]**{native}**
         __{english}__
-        {native}"""
+        {romaji}"""
     else:
-        name = f"""[{c_flag}]**{romaji}**
-        {native}"""
+        name = f"""[{c_flag}]**{native}**
+        {romaji}"""
     prql, prql_id, sql, sql_id = "", "None", "", "None"
     for i in prqlsql:
         if i["relationType"] == "PREQUEL":
@@ -835,7 +835,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
                 th = pos_no(x)
         else:
             th = pos_no(x)
-        air_on += f" | {eps}{th} eps"
+        air_on += f" | 第 {eps}{th} 集"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
         status_air = f"➤ **播放状态:** `{status}{eps_}`"
@@ -937,7 +937,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None):
                 th = pos_no(x)
         else:
             th = pos_no(x)
-        air_on += f" | {eps}{th} eps"
+        air_on += f" | 第 {eps}{th} 集"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
         status_air = f"➤ **播放状态:** `{status}{eps_}`"
@@ -1181,7 +1181,7 @@ async def check_if_adult(id_):
 
 async def get_scheduled(x: int = 9):
     day = str(day_(x if x!=9 else datetime.now().weekday())).lower()
-    out = f"Scheduled animes for {day.capitalize()}\n\n"
+    out = f"在 {day.capitalize()} 预定的动画有\n\n"
     async with AioJikan() as session:
         sched_ls = (await session.schedule(day=day)).get(day)
         for i in sched_ls:
