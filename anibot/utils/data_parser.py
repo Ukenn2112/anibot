@@ -1181,7 +1181,7 @@ async def check_if_adult(id_):
 
 async def get_scheduled(x: int = 9):
     day = str(day_(x if x!=9 else datetime.now().weekday())).lower()
-    out = f"在 {day.capitalize()} 预定的动画有\n\n"
+    out = f"在 {day.capitalize()} 播出的动画有\n\n"
     async with AioJikan() as session:
         sched_ls = (await session.schedule(day=day)).get(day)
         for i in sched_ls:

@@ -12,12 +12,12 @@ DC = get_collection('DISABLED_CMDS')
 @Client.on_message(filters.command(["schedule", f"schedule{BOT_NAME}"], prefixes=trg))
 @control_user
 async def get_schuled(client: Client, message: Message):
-    """获取预定的动画列表"""
+    """动画播出时间表"""
     gid = message.chat.id
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'schedule' in find_gc['cmd_list'].split():
         return
-    x = await client.send_message(gid, "<code>获取预定的动画</code>")
+    x = await client.send_message(gid, "<code>正在获取动画播出时间表</code>")
     user = message.from_user.id
     msg = await get_scheduled()
     buttons = get_btns("SCHEDULED", result=[msg[1]], user=user)

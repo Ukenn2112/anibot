@@ -42,7 +42,7 @@ Telegram Bot Repo 能够通过 Anilist API 从 [AniFluid](https://t.me/anifluidb
  /airing - 获取动画的播出数据信息
  /flex - 获取授权用户的匿名信息
  /user - 获取与查询有关的名单信息
- /schedule - 取出预定的动画
+ /schedule - 获取动画播出时间表
  /auth - 获取关于如何授权动漫账户的信息
  /browse - 获取流行的、趋势的或即将播出的动画
  /quote - 获取随机报价

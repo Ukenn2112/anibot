@@ -14,7 +14,7 @@ DC = get_collection('DISABLED_CMDS')
 @Client.on_message(filters.command(["watch", f"watch{BOT_NAME}"], prefixes=trg))
 @control_user
 async def get_watch_order(client: Client, message: Message):
-    """获取预定的动画列表"""
+    """动画播出时间表"""
     gid = message.chat.id
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'watch' in find_gc['cmd_list'].split():
