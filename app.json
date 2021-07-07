@@ -7,8 +7,8 @@
         "Bot",
         "Anime"
     ],
-    "repository":"https://github.com/lostb053/anibot",
-    "website":"https://github.com/lostb053/anibot",
+    "repository":"https://github.com/Ukenn2112/anibot",
+    "website":"https://github.com/Ukenn2112/anibot",
     "success_url":"https://t.me/lostb053",
     "env":{
         "API_ID":{

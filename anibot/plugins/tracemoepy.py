@@ -26,12 +26,12 @@ TRACE_MOE = {}
 @Client.on_message(filters.command(["reverse", f"reverse{BOT_NAME}"], prefixes=trg))
 @control_user
 async def trace_bek(client: Client, message: Message):
-    """ Reverse Search Anime Clips/Photos """
+    """ 反向搜索动画片段/图片 """
     gid = message.chat.id
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'reverse' in find_gc['cmd_list'].split():
         return
-    x = await message.reply_text("Reverse searching the given media")
+    x = await message.reply_text("反向搜索指定的媒体")
     replied = message.reply_to_message
     if not replied:
         await x.edit_text("Reply to some media !")

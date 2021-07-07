@@ -17,7 +17,7 @@ async def get_schuled(client: Client, message: Message):
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'schedule' in find_gc['cmd_list'].split():
         return
-    x = await client.send_message(gid, "<code>Fetching Scheduled Animes</code>")
+    x = await client.send_message(gid, "<code>获取预定的动画片</code>")
     user = message.from_user.id
     msg = await get_scheduled()
     buttons = get_btns("SCHEDULED", result=[msg[1]], user=user)
