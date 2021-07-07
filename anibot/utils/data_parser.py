@@ -835,7 +835,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None):
                 th = pos_no(x)
         else:
             th = pos_no(x)
-        air_on += f" | 第 {eps}{th} 集"
+        air_on += f"秒后 | 第{eps}{th}集"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
         status_air = f"➤ **播放状态:** `{status}{eps_}`"
@@ -937,7 +937,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None):
                 th = pos_no(x)
         else:
             th = pos_no(x)
-        air_on += f" | 第 {eps}{th} 集"
+        air_on += f"秒后 | 第{eps}{th}集"
     if air_on  is None:
         eps_ = f"` | `{episodes} eps" if episodes is not None else ""
         status_air = f"➤ **播放状态:** `{status}{eps_}`"

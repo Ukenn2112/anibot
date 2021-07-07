@@ -229,11 +229,11 @@ def make_it_rw(time_stamp):
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + " 天,") if days else "")
-        + ((str(hours) + " 时,") if hours else "")
-        + ((str(minutes) + " 分,") if minutes else "")
-        + ((str(seconds) + " 秒,") if seconds else "")
-        + ((str(milliseconds) + " 毫, ") if milliseconds else "")
+        ((str(days) + "天,") if days else "")
+        + ((str(hours) + "时,") if hours else "")
+        + ((str(minutes) + "分,") if minutes else "")
+        + ((str(seconds) + "秒,") if seconds else "")
+        + ((str(milliseconds) + "毫,") if milliseconds else "")
     )
     return tmp[:-2]
 
