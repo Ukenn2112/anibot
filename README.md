@@ -14,9 +14,9 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * 来自[LiveChart]的动漫播放通知(https://livechart.me)
 * 动漫发布通知[Crunchyroll](https://crunchyroll.com)
 * 动漫发布通知 [Subsplease](https://subsplease.org)
-* 动漫反向搜索由[tracemoepy]提供(https://github.com/dragsama/tracemoepy)
+* 动漫反向搜索由[tracemoepy](https://github.com/dragsama/tracemoepy)提供
 * 使用[web api](https://chiaki.vercel.app)从[Chiaki](https://chiaki.site/)观看指令。
-<h3>还可以添加到群组并启用sfw锁，以防止成员查找hentai和18岁以上的东西<br>还包括指令禁用。</h3>
+<h3>还可以添加到群组并是否启用sfw锁，以防止成员查找hentai和R18的东西<br>使用指令禁用。</br></h3>
 
 <img src='https://img.shields.io/github/repo-size/lostb053/anibot?style=flat-square'>  <img src='https://img.shields.io/github/license/lostb053/anibot?style=flat-square'>  <img src='https://img.shields.io/github/languages/top/lostb053/anibot?style=flat-square'>  [![CodeFactor](https://www.codefactor.io/repository/github/lostb053/anibot/badge)](https://www.codefactor.io/repository/github/lostb053/anibot)
 
@@ -27,7 +27,7 @@ Telegram Bot Repo能够通过Anilist API从[AniFluid](https://t.me/anifluidbot)�
 * SauceNAO [API Keys](https://saucenao.com/)
 * MongoDB [Database URL](https://cloud.mongodb.com/)
 * Anilist [Client Keys](https://anilist.co/settings/developer)
-* For smooth authentication process deploy [this](https://github.com/lostb053/anilist_oauth_webserver) webserver (well a noob code server hope this helps)
+* 为了使认证过程顺利进行，请部署[这个](https://github.com/lostb053/anilist_oauth_webserver)网络服务器 (一个无名的代码服务器，希望对你有帮助。)
 
 
 ## 可用指令
